@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ photo.caption }}{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <div class="row">
+            <div class="col col-12 col-sm-10 col-md-8 col-lg-6 m-auto">
+                    {% if photo.photo %}
+                        <img src="{{ photo.photo.url }}" class="card-img-top">
+                    {% endif %}
+            </div>
+        </div>
+            <h5 class="card-title">{{ photo.caption }}</h5>
+            <p class="card-text">количество лайков : {{ photo.likes }}</p>
+            <p class="card-text">автор : {{ photo.author }}</p>
+            <p class="card-text">Создали : {{ photo.created_at }}</p>
+            <a href="#" class="btn btn-primary">Посмотреть</a>
+    </div>
+{% endblock %}
