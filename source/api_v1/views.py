@@ -1,12 +1,14 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import viewsets
+from webapp.models import Comments, Photo
+from api_v1.serializers import CommentsSerializer, PhotoSerializer
 
 
-class LogoutView(APIView):
-    permission_classes = []
+class CommentsViewSet(viewsets.ModelViewSet):
+    queryset = Comments.objects.all()
+    serializer_class = CommentsSerializer
 
-    def post(self, request, *args, **kwargs):
-        user = self.request.user
-        if user.is_authenticated:
-            user.auth_token.delete()
-        return Response({'status': 'ok'})
+
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+
