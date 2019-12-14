@@ -5,6 +5,7 @@ from api_v1 import views
 router = routers.DefaultRouter()
 router.register(r'comments', views.CommentsViewSet)
 router.register(r'photos', views.PhotoViewSet)
+router.register(r'likes', views.LikeViewSet)
 
 app_name = 'api_v1'
 

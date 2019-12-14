@@ -10,11 +10,15 @@
             </div>
         </div>
             <h5 class="card-title">{{ photo.caption }}</h5>
-            <p class="card-text">количество лайков : {{ photo.likes }}</p>
+            <p class="card-text" id="likes" data-photo="{{ photo.pk }}" data-user="{{ request.user.pk }}">
+                количество лайков : {{ photo.likes }}
+            </p>
             <p class="card-text">автор : {{ photo.author }}</p>
             <p class="card-text">Создали : {{ photo.created_at }}</p>
             <a href="{% url 'webapp:photo_update' photo.pk %}" class="btn btn-primary">Редактировать</a>
             <a href="{% url 'webapp:delete_photo' photo.pk %}" class="btn btn-primary">Удалить</a>
+            <a href="#" id="like" class="btn btn-primary d-none">like</a>
+            <a href="#" id="dislike" class="btn btn-primary d-none">dislike</a>
     </div>
     {% for comment in Comments %}
         <div class="card m-2">

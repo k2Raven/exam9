@@ -1,13 +1,18 @@
 from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.response import Response
-from webapp.models import Comments, Photo
-from api_v1.serializers import CommentsSerializer, PhotoSerializer
+from webapp.models import Comments, Photo, Like
+from api_v1.serializers import CommentsSerializer, PhotoSerializer, LikesSerializer
 
 
 class CommentsViewSet(viewsets.ModelViewSet):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializer
+
+
+class LikeViewSet(viewsets.ModelViewSet):
+    queryset = Like.objects.all()
+    serializer_class = LikesSerializer
 
 
 class PhotoViewSet(viewsets.ModelViewSet):

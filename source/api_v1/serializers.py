@@ -12,3 +12,9 @@ class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ('pk', 'likes')
+
+
+class LikesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = ('pk', 'photo', 'author')
