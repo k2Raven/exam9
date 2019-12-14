@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Delete{% endblock %}
+
+{% block content %}
+    <div class="card m-2">
+        <div class="card-header">
+            Вы хотите удалить "{{ photo.caption }}"?
+        </div>
+        <div class="card-body">
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <form action="{% url "webapp:delete_photo" photo.pk%}" method="POST" enctype="multipart/form-data">
+                        {% include 'partial/form.html' %}
+                        <input type="submit" value="Удалить" class="btn btn-primary">
+                    </form>
+                </div>
+                <div class="col-auto my-1">
+                    <form><a href="{% url 'webapp:index'%}" class="btn btn-primary">Назад</a></form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

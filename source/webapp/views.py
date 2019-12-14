@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from webapp.models import Photo
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from webapp.models import Photo, Comments
 from webapp.forms import PhotoForm
 
 from django.urls import reverse_lazy
@@ -17,6 +17,11 @@ class PhotoView(DetailView):
     template_name = 'detail.html'
     model = Photo
     context_object_name = 'photo'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['Comments'] = Comments.objects.all()
+        return context
 
 
 class PhotoCreateView(LoginRequiredMixin, CreateView):
@@ -36,3 +41,9 @@ class PhotoUpdateView(UpdateView):
     form_class = PhotoForm
     success_url = reverse_lazy('webapp:index')
 
+
+class PhotoDeleteView(DeleteView):
+    template_name = 'delete.html'
+    model = Photo
+    context_object_name = 'photo'
+    success_url = reverse_lazy('webapp:index')

@@ -13,6 +13,29 @@
             <p class="card-text">количество лайков : {{ photo.likes }}</p>
             <p class="card-text">автор : {{ photo.author }}</p>
             <p class="card-text">Создали : {{ photo.created_at }}</p>
-            <a href="#" class="btn btn-primary">Посмотреть</a>
+            <a href="{% url 'webapp:photo_update' photo.pk %}" class="btn btn-primary">Редактировать</a>
+            <a href="{% url 'webapp:delete_photo' photo.pk %}" class="btn btn-primary">Удалить</a>
     </div>
+    {% for comment in Comments %}
+        <div class="card m-2">
+            <div class="card-header">
+                {{ comment.author }} ({{ comment.created_at }})
+            </div>
+
+            <div class="card-body">
+                <p class="card-text">Комментарий: {{ comment.text}}</p>
+                <div class="form-row align-items-center">
+                    <div class="col-auto my-1">
+                        <form><a href="#" class="btn btn-primary">Удаление</a></form>
+                    </div>
+                    <div class="col-auto my-1">
+                        <form><a href="#" class="btn btn-primary">Редаклирование</a></form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% empty %}
+        <p>Нет комментов</p>
+    {% endfor %}
 {% endblock %}
