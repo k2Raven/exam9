@@ -29,8 +29,9 @@ class PhotoCreateView(LoginRequiredMixin, CreateView):
         self.object = self.model.objects.create(author=self.request.user, **form.cleaned_data)
         return redirect(self.get_success_url())
 
+
 class PhotoUpdateView(UpdateView):
-    template_name = 'create.html'
+    template_name = 'update.html'
     model = Photo
     form_class = PhotoForm
     success_url = reverse_lazy('webapp:index')

@@ -18,6 +18,7 @@
                         <p class="card-text">автор : {{ photo.author }}</p>
                         <p class="card-text">Создали : {{ photo.created_at }}</p>
                         <a href="{% url 'webapp:detail_photo' photo.pk %}" class="btn btn-primary">Посмотреть</a>
+                        <a href="{% url 'webapp:photo_update' photo.pk %}" class="btn btn-primary">Редактировать</a>
                     </div>
                 </div>
             </div>
